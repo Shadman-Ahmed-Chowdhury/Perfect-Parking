@@ -1,0 +1,23 @@
+.navbar-light {
+  background-color: #39aa90;
+}
+
+.navbar-brand {
+  font-size: 25px;
+  font-weight: 500;
+  color: white !important;
+}
+
+.link {
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 7px 10px;
+  transition: 0.5s all ease-in-out;
+}
+
+.link:hover {
+  color: white;
+  border-top: 2px solid white;
+  text-decoration: none;
+}
