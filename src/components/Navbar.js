@@ -1,9 +1,14 @@
 import React from "react"; // import { Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import logoutUser from "../app-logic/logoutUser";
 
 import "./Navbar.css";
 
 const Navbar = () => {
+  const logout = () => {
+    logoutUser();
+    console.log("Logout User");
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -41,9 +46,15 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/login" className="link">
-                  Login
+                <Link to="/about" className="link">
+                  About
                 </Link>
+              </li>
+              <li className="nav-item">
+                <span onClick={() => logout()}>Logout</span>
+                {/* <Link to="/login" className="link">
+                  Login
+                </Link> */}
               </li>
             </ul>
           </div>

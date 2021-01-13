@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import RegisterParking from "./components/RegisterParking";
 import BookParking from "./components/BookParking";
+import About from "./components/About";
 
 import Navbar from "./components/Navbar";
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/login" exact component={Login} />
           <Route path="/register-parking" exact component={RegisterParking} />
           <Route path="/book-parking" exact component={BookParking} />
+          <Route path="/about" exact component={About} />
         </div>
       </Router>
     </div>
