@@ -1,22 +1,20 @@
 import React from "react";
 import authListener from "../app-logic/authListener";
+import saveParkingData from "../app-logic/savaParkingData";
 
 class RegisterParking extends React.Component {
   state = {
     username: "",
     uid: "",
-    divison: "",
-    area: "",
-    zipCode: "",
-    thana: "",
-    house: "",
-    road: "",
-    fullAddress: "",
+    division: "",
   };
   componentDidMount() {
     authListener().onAuthStateChanged((user) => {
       if (user) {
         console.log(user.email);
+        this.setState({
+          uid: user.uid,
+        });
         // const promise = getUserData(user.uid);
         // promise.then((doc) => {
         //   console.log(doc.data().username);
@@ -39,6 +37,54 @@ class RegisterParking extends React.Component {
 
   goToHome = () => {
     window.location.assign("/");
+  };
+  registerParking = (e) => {
+    e.preventDefault();
+    const uid = this.state.uid;
+    const divison = this.state.division;
+    const area = this.area.value;
+    const zipCode = this.zipCode.value;
+    const thana = this.thana.value;
+    const house = this.house.value;
+    const road = this.road.value;
+    const fullAddress = this.fullAddress.value;
+    const about = this.about.value;
+    const ownerName = this.ownerName.value;
+    const ownerPhone = this.ownerPhone.value;
+    const ownerNID = this.ownerNID.value;
+    const ownerEmail = this.ownerEmail.value;
+    const maintainerName = this.maintainerName.value;
+    const maintainerPhone = this.maintainerPhone.value;
+    const maintainerNID = this.maintainerNID.value;
+    const maintainerEmail = this.maintainerEmail.value;
+    const totalSpots = this.totalSpots.value;
+    const availableSpots = this.availableSpots.value;
+    const hourlyRate = this.hourlyRate.value;
+    const monthlyRate = this.monthlyRate.value;
+
+    saveParkingData(
+      uid,
+      divison,
+      area,
+      zipCode,
+      thana,
+      house,
+      road,
+      fullAddress,
+      about,
+      ownerName,
+      ownerPhone,
+      ownerNID,
+      ownerEmail,
+      maintainerName,
+      maintainerPhone,
+      maintainerNID,
+      maintainerEmail,
+      totalSpots,
+      availableSpots,
+      hourlyRate,
+      monthlyRate
+    );
   };
 
   // if (user !== null) {
@@ -75,7 +121,10 @@ class RegisterParking extends React.Component {
     return (
       <div className="register-parking container">
         <h2 className="text-center mt-5">Register Your Parking Spot</h2>
-        <form className="row g-3 form">
+        <p className="text-center">
+          ** One User can only register one parking spot/parking lot.**
+        </p>
+        <form className="row g-3 form" onSubmit={this.registerParking}>
           <h5>Parking Location Information</h5>
           {/* divison */}
           <div className=" col-md-6">
@@ -87,7 +136,9 @@ class RegisterParking extends React.Component {
               onChange={this.handleChange}
               name="division"
               className="form-control form-select"
+              required
             >
+              <option value="">Select any Division</option>
               <option value="Dhaka">Dhaka</option>
               <option value="Chattogram">Chattogram</option>
               <option value="Sylhet">Sylhet</option>
@@ -104,6 +155,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="area"
               ref={(input) => (this.area = input)}
+              required
             />
           </div>
 
@@ -117,6 +169,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="Zip Code"
               ref={(input) => (this.zipCode = input)}
+              required
             />
           </div>
 
@@ -130,6 +183,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="Thana"
               ref={(input) => (this.thana = input)}
+              required
             />
           </div>
 
@@ -143,6 +197,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="House No."
               ref={(input) => (this.house = input)}
+              required
             />
           </div>
 
@@ -156,6 +211,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="Road Name"
               ref={(input) => (this.road = input)}
+              required
             />
           </div>
 
@@ -169,6 +225,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="Full Address"
               ref={(input) => (this.fullAddress = input)}
+              required
             />
           </div>
 
@@ -183,6 +240,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="About"
               ref={(input) => (this.about = input)}
+              required
             ></textarea>
           </div>
 
@@ -197,6 +255,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="Owner's Name"
               ref={(input) => (this.ownerName = input)}
+              required
             />
           </div>
 
@@ -210,6 +269,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="Owner's Phone"
               ref={(input) => (this.ownerPhone = input)}
+              required
             />
           </div>
 
@@ -223,6 +283,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="Owner's NID"
               ref={(input) => (this.ownerNID = input)}
+              required
             />
           </div>
 
@@ -236,6 +297,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="Owner's Email"
               ref={(input) => (this.ownerEmail = input)}
+              required
             />
           </div>
 
@@ -251,6 +313,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="Maintainer's Name"
               ref={(input) => (this.maintainerName = input)}
+              required
             />
           </div>
 
@@ -264,6 +327,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="Maintainer's Phone"
               ref={(input) => (this.maintainerPhone = input)}
+              required
             />
           </div>
 
@@ -277,6 +341,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="Maintainer's NID"
               ref={(input) => (this.maintainerNID = input)}
+              required
             />
           </div>
 
@@ -290,6 +355,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="Maintainer's Email"
               ref={(input) => (this.maintainerEmail = input)}
+              required
             />
           </div>
 
@@ -304,6 +370,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="Total Spots"
               ref={(input) => (this.totalSpots = input)}
+              required
             />
           </div>
 
@@ -317,6 +384,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="Available Spots"
               ref={(input) => (this.availableSpots = input)}
+              required
             />
           </div>
 
@@ -330,6 +398,7 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="Hourly Rate"
               ref={(input) => (this.hourlyRate = input)}
+              required
             />
           </div>
 
@@ -343,11 +412,14 @@ class RegisterParking extends React.Component {
               className="form-control"
               placeholder="Montly Rate"
               ref={(input) => (this.monthlyRate = input)}
+              required
             />
           </div>
 
           <div className="col-12 mb-5">
-            <button className="btn btn-info ">Register Parking Spot</button>
+            <button type="submit" className="btn btn-info">
+              Register Parking Spot
+            </button>
           </div>
         </form>
       </div>
