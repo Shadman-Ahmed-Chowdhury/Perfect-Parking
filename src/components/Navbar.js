@@ -72,8 +72,15 @@ const Navbar = () => {
               </li>
               {user ? (
                 <li className="nav-item">
-                  <span>{user.email}</span>
-                  <span onClick={() => logout()}>Logout</span>
+                  <span>
+                    {" "}
+                    <Link to="/profile" className="link">
+                      Profile
+                    </Link>
+                  </span>
+                  <span onClick={() => logout()} className="link">
+                    Logout
+                  </span>
                 </li>
               ) : (
                 <li className="nav-item">

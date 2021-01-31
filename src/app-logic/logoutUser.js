@@ -1,8 +1,25 @@
 import fireConfig from "../firebaseConfig/config";
 
+//Importing SweetAlert
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
 const logoutUser = () => {
-  fireConfig.auth().signOut();
-  console.log("Logout algasjdlf");
+  const MySwal = withReactContent(Swal);
+  MySwal.fire({
+    title: "Are you sure?",
+    text: "Do you want logout?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fireConfig.auth().signOut();
+      console.log("Logout algasjdlf");
+    }
+  });
 };
 
 export default logoutUser;
