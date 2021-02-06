@@ -29,7 +29,7 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container">
           <Link to="/" className="navbar-brand">
-            Perfect Parking
+            Perfect Parker
           </Link>
           <button
             className="navbar-toggler"

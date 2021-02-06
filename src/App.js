@@ -23,7 +23,7 @@ function App() {
           <Route path="/login" exact component={Login} />
           <Route path="/register" exact component={Register} />
           <Route path="/register-parking" exact component={RegisterParking} />
-          <Route path="/book-parking" exact component={BookParking} />
+          <Route path="/book-parking/:id" exact component={BookParking} />
           <Route path="/all-parking-spots" exact component={ParkingList} />
           <Route path="/about" exact component={About} />
         </div>
