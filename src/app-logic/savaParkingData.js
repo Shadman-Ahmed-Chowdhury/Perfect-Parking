@@ -58,7 +58,7 @@ const saveParkingData = (
     .then(() => {
       MySwal.fire({
         icon: "success",
-        title: "User Registration Completed!",
+        title: "Parking Spot Registration Completed!",
         confirmButtonText: "Continue",
       }).then(() => {
         window.location.assign("/");

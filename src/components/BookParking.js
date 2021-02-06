@@ -3,6 +3,8 @@ import authListener from "../app-logic/authListener";
 
 import "./BookParking.css";
 
+import saveBookingData from "../app-logic/saveBookingData";
+
 class BookParking extends React.Component {
   state = {
     username: "",
@@ -61,10 +63,20 @@ class BookParking extends React.Component {
     const date = this.date.value;
     const startTime = this.startTime.value;
     const endTime = this.endTime.value;
+    const uid = this.state.uid;
 
-    console.log(parkingId);
-    console.log(startTime);
-    console.log(endTime);
+    saveBookingData(
+      uid,
+      parkingId,
+      name,
+      phone,
+      email,
+      licenseNo,
+      carRegNo,
+      date,
+      startTime,
+      endTime
+    );
   };
 
   render() {
