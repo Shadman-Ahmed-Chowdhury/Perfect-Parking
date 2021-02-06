@@ -2,3 +2,8 @@
   color: white;
   background-color: #39aa90;
 }
+
+.btn-info:hover {
+  color: white;
+  background-color: #20856d;
+}

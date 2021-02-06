@@ -49,12 +49,30 @@ class BookParking extends React.Component {
     });
   };
 
+  bookParking = (e) => {
+    e.preventDefault();
+
+    const parkingId = this.props.match.params.id;
+    const name = this.name.value;
+    const phone = this.phone.value;
+    const email = this.email.value;
+    const licenseNo = this.licenseNo.value;
+    const carRegNo = this.carRegNo.value;
+    const date = this.date.value;
+    const startTime = this.startTime.value;
+    const endTime = this.endTime.value;
+
+    console.log(parkingId);
+    console.log(startTime);
+    console.log(endTime);
+  };
+
   render() {
     return (
       <div className="book-parking container">
         <h2 className="text-center mt-5">Book this Parking Spot</h2>
 
-        <form className="row g-3 form" onsubmit={this.bookParking}>
+        <form className="row g-3 form" onSubmit={this.bookParking}>
           <h5>Personal Info</h5>
           {/* name */}
           <div className="col-md-6">
@@ -106,7 +124,7 @@ class BookParking extends React.Component {
               type="text"
               className="form-control"
               placeholder="License No."
-              ref={(input) => (this.license = input)}
+              ref={(input) => (this.licenseNo = input)}
               required
             />
           </div>
