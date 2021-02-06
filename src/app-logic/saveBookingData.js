@@ -21,6 +21,7 @@ const saveBookingData = (
   //Generating ID;
   var d = new Date();
   var id = Date.parse(d).toString();
+  saveBookingId(id);
   firestore
     .collection("Bookings")
     .doc(id)
