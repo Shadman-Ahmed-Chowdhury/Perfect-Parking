@@ -4,6 +4,8 @@ import firestore from "./firestore";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
+import saveBookingId from "./saveBookingId";
+
 const saveBookingData = (
   uid,
   parkingId,
@@ -21,7 +23,7 @@ const saveBookingData = (
   //Generating ID;
   var d = new Date();
   var id = Date.parse(d).toString();
-  saveBookingId(id);
+  saveBookingId(parkingId, id);
   firestore
     .collection("Bookings")
     .doc(id)
