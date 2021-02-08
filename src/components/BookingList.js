@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { ScaleLoader } from "react-spinners";
-
-import "./Profile.css";
+import "./BookingList.css";
 
 import getBookingList from "../app-logic/getBookingList";
 import authListener from "../app-logic/authListener";
 import updateBookingData from "../app-logic/updateBookingData";
-//import getUserData from "../app-logic/getUserData";
 
-const Profile = () => {
+const BookingList = () => {
   const [user, setUser] = useState({});
   const [uid, setUid] = useState("");
   const [bookingList, setBookingList] = useState([]);
@@ -46,7 +44,7 @@ const Profile = () => {
   };
 
   const filteredBookingList = bookingList.filter((booking) => {
-    return booking.data().parkingId === uid;
+    return booking.data().uid === uid;
   });
 
   if (loading) {
@@ -75,16 +73,10 @@ const Profile = () => {
                 <h5>Start Time: {doc.data().startTime}</h5>
                 <h5>End Time: {doc.data().endTime}</h5>
                 {doc.data().confirmed ? (
-                  <h6>Confirmed</h6>
+                  <h6>Confirmed with token: {doc.data().confirmToken}</h6>
                 ) : (
-                  <div className="button-group">
-                    <button
-                      className="btn btn-sm btn-info me-3"
-                      onClick={() => confirmBooking(doc.id, uid)}
-                    >
-                      Confirm
-                    </button>
-                    <button className="btn btn-sm btn-danger">Reject</button>
+                  <div>
+                    <h6>Yet to be confirmed!</h6>
                   </div>
                 )}
               </div>
@@ -97,4 +89,4 @@ const Profile = () => {
   }
 };
 
-export default Profile;
+export default BookingList;

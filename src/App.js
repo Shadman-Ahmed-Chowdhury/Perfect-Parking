@@ -11,6 +11,7 @@ import BookParking from "./components/BookParking";
 import ParkingList from "./components/ParkingList";
 import About from "./components/About";
 import Profile from "./components/Profile";
+import BookingList from "./components/BookingList";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/book-parking/:id" exact component={BookParking} />
           <Route path="/all-parking-spots" exact component={ParkingList} />
           <Route path="/about" exact component={About} />
+          <Route path="/booking-list" exact component={BookingList} />
         </div>
       </Router>
     </div>
