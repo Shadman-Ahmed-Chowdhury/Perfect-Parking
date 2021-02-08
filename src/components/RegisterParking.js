@@ -366,7 +366,7 @@ class RegisterParking extends React.Component {
               Total Parking Spots
             </label>
             <input
-              type="text"
+              type="number"
               className="form-control"
               placeholder="Total Spots"
               ref={(input) => (this.totalSpots = input)}
@@ -380,7 +380,7 @@ class RegisterParking extends React.Component {
               Available Parking Spots
             </label>
             <input
-              type="text"
+              type="number"
               className="form-control"
               placeholder="Available Spots"
               ref={(input) => (this.availableSpots = input)}
@@ -394,7 +394,7 @@ class RegisterParking extends React.Component {
               Hourly Rate
             </label>
             <input
-              type="text"
+              type="number"
               className="form-control"
               placeholder="Hourly Rate"
               ref={(input) => (this.hourlyRate = input)}
@@ -408,7 +408,7 @@ class RegisterParking extends React.Component {
               Monthly Rate
             </label>
             <input
-              type="text"
+              type="number"
               className="form-control"
               placeholder="Montly Rate"
               ref={(input) => (this.monthlyRate = input)}

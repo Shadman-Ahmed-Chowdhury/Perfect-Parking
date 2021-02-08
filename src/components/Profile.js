@@ -5,10 +5,12 @@ import "./Profile.css";
 
 import getBookingList from "../app-logic/getBookingList";
 import authListener from "../app-logic/authListener";
+import updateBookingData from "../app-logic/updateBookingData";
 //import getUserData from "../app-logic/getUserData";
 
 const Profile = () => {
   const [user, setUser] = useState({});
+  const [uid, setUid] = useState("");
   const [bookingList, setBookingList] = useState([]);
   //const [filteredBookingList, setFilteredBookingList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,13 +18,16 @@ const Profile = () => {
   useEffect(() => {
     authListener().onAuthStateChanged((user) => {
       setUser(user);
+
       if (user) {
+        setUid(user.uid);
         // const promise = getUserData(user.uid);
         // promise.then((doc) => {
         //   setBookingsId(doc.data().bookingsId);
         // });
       } else {
         console.log("Logged out");
+        window.location.assign("/login");
       }
     });
     const fetchBookingList = async () => {
@@ -32,10 +37,16 @@ const Profile = () => {
       setLoading(false);
     };
     fetchBookingList();
-  }, []);
+
+    // eslint-disable-next-line
+  }, [uid]);
+
+  const confirmBooking = (bookingId, uid) => {
+    updateBookingData(bookingId, uid);
+  };
 
   const filteredBookingList = bookingList.filter((booking) => {
-    return booking.data().parkingId === user.uid;
+    return booking.data().parkingId === uid;
   });
 
   if (loading) {
@@ -65,10 +76,19 @@ const Profile = () => {
                 <h5>Date: {doc.data().date}</h5>
                 <h5>Start Time: {doc.data().startTime}</h5>
                 <h5>End Time: {doc.data().endTime}</h5>
-                <div className="button-group">
-                  <button className="btn btn-sm btn-info me-3">Confirm</button>
-                  <button className="btn btn-sm btn-danger">Reject</button>
-                </div>
+                {doc.data().confirmed ? (
+                  <h6>Confirmed</h6>
+                ) : (
+                  <div className="button-group">
+                    <button
+                      className="btn btn-sm btn-info me-3"
+                      onClick={() => confirmBooking(doc.id, uid)}
+                    >
+                      Confirm
+                    </button>
+                    <button className="btn btn-sm btn-danger">Reject</button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
