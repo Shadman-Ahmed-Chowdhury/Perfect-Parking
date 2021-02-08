@@ -74,7 +74,7 @@ const Navbar = () => {
                 <li className="nav-item">
                   <span>
                     {" "}
-                    <Link to="/profile" className="link">
+                    <Link to={`/profile/${user.uid}`} className="link">
                       Profile
                     </Link>
                   </span>
