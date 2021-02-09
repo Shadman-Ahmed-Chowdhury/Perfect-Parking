@@ -11,3 +11,6 @@ td {
   justify-content: center;
   align-items: center;
 }
+.table-color tr {
+  background-color: #7f8ff73d;
+}
