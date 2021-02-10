@@ -22,7 +22,7 @@ const ParkingList = () => {
     return (
       <div className="loader">
         <ScaleLoader
-          color={"#36D7B7"}
+          color={"#282f5d"}
           height={100}
           width={5}
           radius={12}
@@ -35,7 +35,7 @@ const ParkingList = () => {
       <div className="ParkingList">
         <div className="container">
           <h2 className="mt-5 mb-5">All Parking Spots</h2>
-          <table className="table table-success table-bordered table-hover">
+          <table className="table table-default table-bordered table-hover table-color">
             <thead>
               <th scope="col">#</th>
               <th scope="col">Location</th>
@@ -50,9 +50,7 @@ const ParkingList = () => {
                   <td>{doc.data().availableSpots}</td>
                   <td>
                     <Link to={`/book-parking/${doc.id}`} className="title">
-                      <button className="btn btn-outline-success">
-                        Book now
-                      </button>
+                      <button className="btn btn-outline-dark">Book now</button>
                     </Link>
                   </td>
                 </tr>
