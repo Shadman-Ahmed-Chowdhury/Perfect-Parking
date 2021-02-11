@@ -1,0 +1,9 @@
+.card {
+  width: 100%;
+}
+.tokenId {
+  background-color: #282f5d;
+  color: #ededed;
+  padding: 5px;
+  border-radius: 5px;
+}
