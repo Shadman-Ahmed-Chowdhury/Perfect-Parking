@@ -1,3 +1,17 @@
 .card {
-  background-color: rgba(151, 247, 218, 0.815);
+  background-color: #7f8ff73d;
+}
+
+.btn-info {
+  background-color: #282f5d;
+  border-color: #282f5d;
+}
+
+.btn-info:hover {
+  background-color: #282f66;
+  border-color: #282f5d;
+}
+.btn-info:focus {
+  background-color: #282f5d;
+  border-color: #282f5d;
 }

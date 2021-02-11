@@ -14,3 +14,10 @@ td {
 .table-color tr {
   background-color: #7f8ff73d;
 }
+
+.btn-outline-dark {
+  border-color: #282f5d;
+}
+.btn-outline-dark:hover {
+  background-color: #282f5d;
+}

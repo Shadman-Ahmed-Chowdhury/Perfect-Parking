@@ -4,7 +4,7 @@ import "./BookingList.css";
 
 import getBookingList from "../app-logic/getBookingList";
 import authListener from "../app-logic/authListener";
-import updateBookingData from "../app-logic/updateBookingData";
+//import updateBookingData from "../app-logic/updateBookingData";
 
 const BookingList = () => {
   const [user, setUser] = useState({});
@@ -39,9 +39,9 @@ const BookingList = () => {
     // eslint-disable-next-line
   }, [uid]);
 
-  const confirmBooking = (bookingId, uid) => {
-    updateBookingData(bookingId, uid);
-  };
+  // const confirmBooking = (bookingId, uid) => {
+  //   updateBookingData(bookingId, uid);
+  // };
 
   const filteredBookingList = bookingList.filter((booking) => {
     return booking.data().uid === uid;
@@ -51,7 +51,7 @@ const BookingList = () => {
     return (
       <div className="loader">
         <ScaleLoader
-          color={"#36D7B7"}
+          color={"#282f5d"}
           height={100}
           width={5}
           radius={12}
@@ -63,17 +63,18 @@ const BookingList = () => {
     //console.log(bookings);
     return (
       <div className="profile container">
-        <h2 className="mt-5">Booking Requests!</h2>
+        <h2 className="mt-5">My Requested Bookings</h2>
         {filteredBookingList.map((doc) => (
-          <div key={doc.id} className="col-md-4 mt-5">
+          <div key={doc.id} className="col-md-10 mt-5">
             <div className="card">
               <div className="card-body">
-                <h3>{doc.data().name}</h3>
+                <h4>Parking Location: 23/34, Gulshan, Dhaka - 1343</h4>
                 <h5>Date: {doc.data().date}</h5>
                 <h5>Start Time: {doc.data().startTime}</h5>
                 <h5>End Time: {doc.data().endTime}</h5>
+                <p>Maintainer's Phone no.: +8801772046912</p>
                 {doc.data().confirmed ? (
-                  <h6>Confirmed with token: {doc.data().confirmToken}</h6>
+                  <h6>Confirmed with token: <span className="tokenId"> {doc.data().confirmToken} </span></h6>
                 ) : (
                   <div>
                     <h6>Yet to be confirmed!</h6>

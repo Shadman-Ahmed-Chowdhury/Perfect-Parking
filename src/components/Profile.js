@@ -53,7 +53,7 @@ const Profile = () => {
     return (
       <div className="loader">
         <ScaleLoader
-          color={"#36D7B7"}
+          color={"#282f5d"}
           height={100}
           width={5}
           radius={12}
@@ -67,10 +67,18 @@ const Profile = () => {
       <div className="profile container">
         <h2 className="mt-5">Booking Requests!</h2>
         {filteredBookingList.map((doc) => (
-          <div key={doc.id} className="col-md-4 mt-5">
+          <div key={doc.id} className="col-md-10 mt-5">
             <div className="card">
               <div className="card-body">
                 <h3>{doc.data().name}</h3>
+                <h5>
+                  Phone Number: {doc.data().phone} | Email: {doc.data().email}{" "}
+                </h5>
+
+                <p>
+                  Car license no: {doc.data().licenseNo} | Car Reg. no:{" "}
+                  {doc.data().carRegNo}{" "}
+                </p>
                 <h5>Date: {doc.data().date}</h5>
                 <h5>Start Time: {doc.data().startTime}</h5>
                 <h5>End Time: {doc.data().endTime}</h5>
