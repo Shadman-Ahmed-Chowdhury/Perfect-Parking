@@ -6,11 +6,12 @@ import "./Profile.css";
 import getBookingList from "../app-logic/getBookingList";
 import authListener from "../app-logic/authListener";
 import updateBookingData from "../app-logic/updateBookingData";
-//import getUserData from "../app-logic/getUserData";
+import getUserData from "../app-logic/getUserData";
 
 const Profile = () => {
   const [user, setUser] = useState({});
   const [uid, setUid] = useState("");
+  const [userData, setUserData] = useState({});
   const [bookingList, setBookingList] = useState([]);
   //const [filteredBookingList, setFilteredBookingList] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -21,10 +22,10 @@ const Profile = () => {
 
       if (user) {
         setUid(user.uid);
-        // const promise = getUserData(user.uid);
-        // promise.then((doc) => {
-        //   setBookingsId(doc.data().bookingsId);
-        // });
+        const promise = getUserData(user.uid);
+        promise.then((doc) => {
+          setUserData({ ...doc.data() });
+        });
       } else {
         console.log("Logged out");
         window.location.assign("/login");
@@ -64,42 +65,77 @@ const Profile = () => {
   } else {
     //console.log(bookings);
     return (
-      <div className="profile container">
-        <h2 className="mt-5">Booking Requests!</h2>
-        {filteredBookingList.map((doc) => (
-          <div key={doc.id} className="col-md-10 mt-5">
-            <div className="card">
-              <div className="card-body">
-                <h3>{doc.data().name}</h3>
-                <h5>
-                  Phone Number: {doc.data().phone} | Email: {doc.data().email}{" "}
-                </h5>
-
+      <div className="profile container align-items-center">
+        <div className="card profile-custom-card mt-3">
+          <div className="profile-card-body">
+            <div className="d-flex flex-row align-items-center text-center justify-content-center">
+              <div className="m-3">
+                <img
+                  src="../assets/avatar.png"
+                  alt="Avatar"
+                  className="rounded-circle m-3 img-thumbnail"
+                  width="120"
+                />
+                <div>
+                  <h4>{userData.name}</h4>
+                </div>
+              </div>
+              <div className="m-3">
                 <p>
-                  Car license no: {doc.data().licenseNo} | Car Reg. no:{" "}
-                  {doc.data().carRegNo}{" "}
+                  <strong>Email: </strong>
+                  {userData.email}
                 </p>
-                <h5>Date: {doc.data().date}</h5>
-                <h5>Start Time: {doc.data().startTime}</h5>
-                <h5>End Time: {doc.data().endTime}</h5>
-                {doc.data().confirmed ? (
-                  <h6>Confirmed</h6>
-                ) : (
-                  <div className="button-group">
-                    <button
-                      className="btn btn-sm btn-info me-3"
-                      onClick={() => confirmBooking(doc.id, uid)}
-                    >
-                      Confirm
-                    </button>
-                    <button className="btn btn-sm btn-danger">Reject</button>
-                  </div>
-                )}
+                <p>
+                  <strong>Phone: </strong>
+                  {userData.phone}
+                </p>
+                <p>
+                  <strong>NID: </strong>
+                  {userData.nid}
+                </p>
               </div>
             </div>
-            <hr />
           </div>
-        ))}
+        </div>
+        <h2 className="mt-5">Booking Requests</h2>
+        <hr />
+        {filteredBookingList
+          .slice(0)
+          .reverse()
+          .map((doc) => (
+            <div key={doc.id} className="col-md-10 mt-5">
+              <div className="card">
+                <div className="card-body">
+                  <h3>{doc.data().name}</h3>
+                  <h5>
+                    Phone Number: {doc.data().phone} | Email: {doc.data().email}{" "}
+                  </h5>
+
+                  <p>
+                    Car license no: {doc.data().licenseNo} | Car Reg. no:{" "}
+                    {doc.data().carRegNo}{" "}
+                  </p>
+                  <h5>Date: {doc.data().date}</h5>
+                  <h5>Start Time: {doc.data().startTime}</h5>
+                  <h5>End Time: {doc.data().endTime}</h5>
+                  {doc.data().confirmed ? (
+                    <h6>Confirmed</h6>
+                  ) : (
+                    <div className="button-group">
+                      <button
+                        className="btn btn-sm btn-info me-3"
+                        onClick={() => confirmBooking(doc.id, uid)}
+                      >
+                        Confirm
+                      </button>
+                      <button className="btn btn-sm btn-danger">Reject</button>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <hr />
+            </div>
+          ))}
       </div>
     );
   }

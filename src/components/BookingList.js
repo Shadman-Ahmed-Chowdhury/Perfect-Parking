@@ -74,7 +74,10 @@ const BookingList = () => {
                 <h5>End Time: {doc.data().endTime}</h5>
                 <p>Maintainer's Phone no.: +8801772046912</p>
                 {doc.data().confirmed ? (
-                  <h6>Confirmed with token: <span className="tokenId"> {doc.data().confirmToken} </span></h6>
+                  <h6>
+                    Confirmed with token:{" "}
+                    <span className="tokenId"> {doc.data().confirmToken} </span>
+                  </h6>
                 ) : (
                   <div>
                     <h6>Yet to be confirmed!</h6>

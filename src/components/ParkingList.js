@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ScaleLoader } from "react-spinners";
-
+import { Accordion, Card } from "react-bootstrap";
 import "./ParkingList.css";
 
 import getParkingSpots from "../app-logic/getParkingSpots";
@@ -35,7 +35,7 @@ const ParkingList = () => {
       <div className="ParkingList">
         <div className="container">
           <h2 className="mt-5 mb-5">All Parking Spots</h2>
-          <table className="table table-default table-bordered table-hover table-color">
+          <table className="table table-default table-bordered table-hover table-color text-center">
             <thead>
               <th scope="col">#</th>
               <th scope="col">Location</th>
@@ -46,7 +46,26 @@ const ParkingList = () => {
               {parkingSpots.map((doc) => (
                 <tr key={doc.id} className="col-md-4 mt-5">
                   <td>{sl++}</td>
-                  <td>{doc.data().fullAddress}</td>
+                  <td>
+                    <Accordion
+                      style={{ background: "#7f8ff700", fontStyle: "bold" }}
+                    >
+                      <Card>
+                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                          {doc.data().fullAddress}
+                          {", Hourly Rate: "}
+                          {doc.data().hourlyRate}
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="0">
+                          <Card.Body>
+                            Maintainers Name: {doc.data().maintainerName},
+                            Phone: {doc.data().maintainerPhone}
+                          </Card.Body>
+                        </Accordion.Collapse>
+                      </Card>
+                    </Accordion>
+                  </td>
+
                   <td>{doc.data().availableSpots}</td>
                   <td>
                     <Link to={`/book-parking/${doc.id}`} className="title">

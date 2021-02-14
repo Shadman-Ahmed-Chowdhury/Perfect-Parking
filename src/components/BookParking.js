@@ -178,7 +178,7 @@ class BookParking extends React.Component {
           </div>
           {/* endTime */}
           <div className="col-md-6">
-            <label htmlFor="date">Starting Time:</label>
+            <label htmlFor="date">End Time:</label>
             <input
               type="time"
               className="form-control"
@@ -187,7 +187,7 @@ class BookParking extends React.Component {
             />
           </div>
           <hr />
-
+          {/* confirm booking button */}
           <div className="col-12 mb-5">
             <button type="submit" className="btn btn-info">
               Confirm Your Booking
