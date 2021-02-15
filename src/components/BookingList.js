@@ -68,7 +68,7 @@ const BookingList = () => {
           <div key={doc.id} className="col-md-10 mt-5">
             <div className="card">
               <div className="card-body">
-                <h4>Parking Location: 23/34, Gulshan, Dhaka - 1343</h4>
+                <h4></h4>
                 <h5>Date: {doc.data().date}</h5>
                 <h5>Start Time: {doc.data().startTime}</h5>
                 <h5>End Time: {doc.data().endTime}</h5>

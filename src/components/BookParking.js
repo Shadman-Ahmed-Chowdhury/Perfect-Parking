@@ -4,11 +4,15 @@ import authListener from "../app-logic/authListener";
 import "./BookParking.css";
 
 import saveBookingData from "../app-logic/saveBookingData";
+import getParkingSpotDetails from "../app-logic/getParkingSpotDetails";
 
 class BookParking extends React.Component {
   state = {
     username: "",
     uid: "",
+    parkingSpotAddress: "",
+    parkingSpotMaintainerName: "",
+    parkingSpotMaintainerPhone: "",
   };
 
   componentDidMount() {
@@ -33,7 +37,23 @@ class BookParking extends React.Component {
         this.goToLogin();
       }
     });
+    this.getParkingData();
   }
+
+  getParkingData = () => {
+    const parkingId = this.match.params.id;
+    console.log(parkingId);
+
+    //Get From Firestore
+    const promise = getParkingSpotDetails(parkingId);
+    promise.then((doc) => {
+      this.setState({
+        parkingSpotAddress: doc.data().fullAddress,
+        parkingSpotMaintainerName: doc.data().maintainerName,
+        parkingSpotMaintainerPhone: doc.data().maintainerPhone,
+      });
+    });
+  };
 
   goToLogin = () => {
     window.location.assign("/login");
@@ -64,6 +84,9 @@ class BookParking extends React.Component {
     const startTime = this.startTime.value;
     const endTime = this.endTime.value;
     const uid = this.state.uid;
+    const parkingSpotAddress = this.state.parkingSpotAddress;
+    const parkingSpotMaintainerName = this.state.parkingSpotMaintainerName;
+    const parkingSpotMaintainerPhone = this.state.parkingSpotMaintainerPhone;
 
     saveBookingData(
       uid,
@@ -75,7 +98,10 @@ class BookParking extends React.Component {
       carRegNo,
       date,
       startTime,
-      endTime
+      endTime,
+      parkingSpotAddress,
+      parkingSpotMaintainerName,
+      parkingSpotMaintainerPhone
     );
   };
 

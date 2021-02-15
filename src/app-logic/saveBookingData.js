@@ -16,7 +16,10 @@ const saveBookingData = (
   carRegNo,
   date,
   startTime,
-  endTime
+  endTime,
+  parkingSpotAddress,
+  parkingSpotMaintainerName,
+  parkingSpotMaintainerPhone
 ) => {
   const MySwal = withReactContent(Swal);
   MySwal.showLoading();
@@ -40,6 +43,9 @@ const saveBookingData = (
       date,
       startTime,
       endTime,
+      parkingSpotAddress,
+      parkingSpotMaintainerName,
+      parkingSpotMaintainerPhone,
     })
     .then(() => {
       MySwal.fire({
