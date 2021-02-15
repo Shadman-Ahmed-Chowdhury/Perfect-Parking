@@ -41,7 +41,7 @@ class BookParking extends React.Component {
   }
 
   getParkingData = () => {
-    const parkingId = this.match.params.id;
+    const parkingId = this.props.match.params.id;
     console.log(parkingId);
 
     //Get From Firestore

@@ -68,11 +68,15 @@ const BookingList = () => {
           <div key={doc.id} className="col-md-10 mt-5">
             <div className="card">
               <div className="card-body">
-                <h4></h4>
+                <h4>{doc.data().parkingSpotAddress}</h4>
                 <h5>Date: {doc.data().date}</h5>
                 <h5>Start Time: {doc.data().startTime}</h5>
                 <h5>End Time: {doc.data().endTime}</h5>
-                <p>Maintainer's Phone no.: +8801772046912</p>
+                <p>Maintainer's Name: {doc.data().parkingSpotMaintainerName}</p>
+                <p>
+                  Maintainer's Phone no.:{" "}
+                  {doc.data().parkingSpotMaintainerPhone}
+                </p>
                 {doc.data().confirmed ? (
                   <h6>
                     Confirmed with token:{" "}
