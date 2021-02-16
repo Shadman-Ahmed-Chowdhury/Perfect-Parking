@@ -82,6 +82,8 @@ const BookingList = () => {
                     Confirmed with token:{" "}
                     <span className="tokenId"> {doc.data().confirmToken} </span>
                   </h6>
+                ) : doc.data().rejected ? (
+                  <h6>Rejected</h6>
                 ) : (
                   <div>
                     <h6>Yet to be confirmed!</h6>
