@@ -46,6 +46,10 @@ const Profile = () => {
     updateBookingData(bookingId, uid);
   };
 
+  const rejectBooking = (bookingId, uid, message) => {
+    updateBookingData(bookingId, uid, message);
+  };
+
   const filteredBookingList = bookingList.filter((booking) => {
     return booking.data().parkingId === uid;
   });
@@ -120,6 +124,8 @@ const Profile = () => {
                   <h5>End Time: {doc.data().endTime}</h5>
                   {doc.data().confirmed ? (
                     <h6>Confirmed</h6>
+                  ) : doc.data().rejected ? (
+                    <h6>Rejected!</h6>
                   ) : (
                     <div className="button-group">
                       <button
@@ -128,7 +134,12 @@ const Profile = () => {
                       >
                         Confirm
                       </button>
-                      <button className="btn btn-sm btn-danger">Reject</button>
+                      <button
+                        className="btn btn-sm btn-danger"
+                        onClick={() => rejectBooking(doc.id, uid, "rejected")}
+                      >
+                        Reject
+                      </button>
                     </div>
                   )}
                 </div>

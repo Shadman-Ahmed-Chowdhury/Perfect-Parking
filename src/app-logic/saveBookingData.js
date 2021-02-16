@@ -35,6 +35,8 @@ const saveBookingData = (
       uid,
       parkingId,
       confirmToken: "",
+      confirmed: false,
+      rejected: false,
       name,
       phone,
       email,
